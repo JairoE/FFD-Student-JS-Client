@@ -1,17 +1,11 @@
 const fetch = require('node-fetch');
-const API_URL = `URL_HERE`
-const headers = {
-	method: "POST",
-	headers: {
-		'Content-Type': "application/json",
-		'Accepts': 'application/json'
-	}
-}
+const SERVER_URL = `URL_HERE`
 
 class MatrixManager {
-	constructor(client, size=1000){
+	constructor(client, id, size=1000){
 		this.client = client
 		this.size = size
+		this.id = id
 	}
 
 	initialize(){
@@ -106,7 +100,7 @@ class MatrixManager {
 
 					let interval = setInterval(()=> {
 						if (index < totalPoints){
-							this.send(points[index].x, points[index].y, color)
+							this.send(points[index].x, points[index].y, points[index].color || color)
 							index++
 						} else {
 							clearInterval(interval)
@@ -154,9 +148,7 @@ class MatrixManager {
 	}
 
 	send(x,y,color){
-		console.log("Sending", {x,y,color})
-			// headers.body = JSON.stringify({x,y,color})
-			// fetch(API_URL + "/set-tile", headers)
+		fetch(SERVER_URL + `/setTile?x=${x}&y=${y}&c=${color}&id=${this.id}`)
 	}
 
 
@@ -166,7 +158,7 @@ class MatrixManager {
 			if (this.checkValidHex(color)) {
 				let points = arguments[1]
 
-				if (points && Array.isArray(points) && this.checkAllValid(points)){					
+				if (points && Array.isArray(points) && this.checkAllValid(points)){         
 					points.forEach(point => {
 						this.client.set(`${point.x}-${point.y}`, color)
 					})
@@ -223,23 +215,23 @@ class MatrixManager {
 
 // let val;
 // if (typeof arg2 === "object"){
-// 	let end = arg2
-// 	val = arg3
+//  let end = arg2
+//  val = arg3
 
-// 	// if (start.x <= end.x && start.y <= end.y){
-// 	// 	for (let x=start.x; x<=end.x; x++){
-// 	// 		for(let y=start.y; y<=end.y; y++){
-// 	// 			this.client.set(`${x}-${y}`, val)
-// 	// 		}
-// 	// 	}
-// 	// }
+//  // if (start.x <= end.x && start.y <= end.y){
+//  //  for (let x=start.x; x<=end.x; x++){
+//  //    for(let y=start.y; y<=end.y; y++){
+//  //      this.client.set(`${x}-${y}`, val)
+//  //    }
+//  //  }
+//  // }
 
 
 
 // } else if(typeof arg2 === "string") { //Sending single value
-// 	val = arg2
-// 	this.send(start.x, start.y, val)
-// 	// this.client.set(`${start.x}-${start.y}`, val)
+//  val = arg2
+//  this.send(start.x, start.y, val)
+//  // this.client.set(`${start.x}-${start.y}`, val)
 // }
 
 
