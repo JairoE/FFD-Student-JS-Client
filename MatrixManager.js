@@ -217,27 +217,4 @@ class MatrixManager {
 }
 
 
-// let val;
-// if (typeof arg2 === "object"){
-//  let end = arg2
-//  val = arg3
-
-//  // if (start.x <= end.x && start.y <= end.y){
-//  //  for (let x=start.x; x<=end.x; x++){
-//  //    for(let y=start.y; y<=end.y; y++){
-//  //      this.client.set(`${x}-${y}`, val)
-//  //    }
-//  //  }
-//  // }
-
-
-
-// } else if(typeof arg2 === "string") { //Sending single value
-//  val = arg2
-//  this.send(start.x, start.y, val)
-//  // this.client.set(`${start.x}-${start.y}`, val)
-// }
-
-
-
 module.exports = { MatrixManager }

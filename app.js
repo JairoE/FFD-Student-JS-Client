@@ -5,6 +5,7 @@ var client = redis.createClient();
 var teamID = 1
 
 client.on('connect', function(){
-	let Matrix = new MatrixManager(client, teamID)
+	let Matrix = new MatrixManager(client, teamID, 500)
 	//Code here!
+
 })
