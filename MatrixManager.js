@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const SERVER_URL = `URL_HERE`
+const SERVER_URL = `http://localhost:3000`
 
 class MatrixManager {
 	constructor(client, id, size=1000){
@@ -37,7 +37,7 @@ class MatrixManager {
 					points.forEach(point => {
 							((x,y) => {
 								this.client.get(`${x}-${y}`, function(err, reply){
-									collected.push({x,y, value: reply})
+									collected.push({x,y, color: reply})
 									remaining--
 									if (remaining === 0) {
 										callback(collected)
@@ -49,7 +49,7 @@ class MatrixManager {
 
 				} else if (this.checkValidPoint(points)){
 					this.client.get(`${points.x}-${points.y}`, function(err,reply){
-						callback({x: points.x, y: points.y, value: reply})
+						callback({x: points.x, y: points.y, color: reply})
 					})
 				} else {
 					throw new Error("Invalid point(s).")
@@ -89,10 +89,10 @@ class MatrixManager {
 
 
 	set(){
-		let color = arguments[0]
+		let color = arguments[1]
 		try {
 			if (this.checkValidHex(color)) {
-				let points = arguments[1]
+				let points = arguments[0]
 
 				if (points && Array.isArray(points) && this.checkAllValid(points)){
 					let totalPoints = points.length
@@ -110,7 +110,8 @@ class MatrixManager {
 					
 
 				} else if (this.checkValidPoint(points)){
-					this.send(points.x, points.y, color)
+
+					this.send(points.x, points.y, points.color || color)
 				} else {
 					throw new Error("Invalid point(s).")
 				}
@@ -137,7 +138,7 @@ class MatrixManager {
 					}
 				}
 
-				this.set(color, collected)
+				this.set(collected, color)
 
 			} else {
 				throw new Error("Invalid points for rectangle")
@@ -147,8 +148,10 @@ class MatrixManager {
 		}
 	}
 
-	send(x,y,color){
-		fetch(SERVER_URL + `/setTile?x=${x}&y=${y}&c=${color}&id=${this.id}`)
+	async send(x,y,color) {
+		await fetch(SERVER_URL + `/setTile?x=${x}&y=${y}&c=${color}&id=${this.id}`, {
+			method: "POST"
+		})
 	}
 
 
@@ -198,13 +201,14 @@ class MatrixManager {
 	}
 
 	checkValidPoint(point){
+
 		return (
 			typeof point === "object" &&
-			point.x && 
+			point.x !== undefined && 
 			typeof point.x === "number" &&
 			point.x >= 0 &&
 			point.x < this.size &&
-			point.y &&
+			point.y !== undefined &&
 			typeof point.y === "number" &&
 			point.y >= 0 &&
 			point.y < this.size
