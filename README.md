@@ -2,7 +2,7 @@
 
 Hello and welcome to the first ever Flatiron Field Day! Today, you and your team will have the opportunity to create a mosaic using your programming skills. 
 
-Right now, we are hosting a server that stores a board full of tiles, and it is the job of your team to write scripts that will allow you to set the color of individual tiles, thus painting your masterpieces for all the world to see. A local Redis server will be running on your machine that will store a live copy on your machine and will be receive updates everytime the main board is updated. If you have no idea what Redis is, first: look it up!, second: don't worry about it! We've given you some code that will handle this part - you only have to do **2 things**:
+Right now, we are hosting a server that stores a board full of tiles, and it is the job of your team to write scripts that will allow you to set the color of individual tiles, thus painting your masterpieces for all the world to see. A local Redis server will be running on your machine that will store a live copy on your machine and will be receive updates everytime the main board is updated. If you have no idea what Redis is, first: look it up!, second: don't worry about it! We've given you some code that will handle this part - you only have to do a few things:
 
 1. Install Redis
 * In your terminal, enter `brew install redis`
