@@ -1,5 +1,7 @@
+const x = require('./p')
 const fetch = require('node-fetch');
 const SERVER_URL = `http://mayisgr8.win`
+let lastWrite = Date.now()
 
 class MatrixManager {
 	constructor(client, id, size=1000){
@@ -89,6 +91,9 @@ class MatrixManager {
 
 
 	set(){
+		let currentTime = Date.now()
+		if (!(currentTime - lastWrite >= 300)) return
+		
 		let color = arguments[1]
 		try {
 			if (this.checkValidHex(color)) {
@@ -103,15 +108,12 @@ class MatrixManager {
 							this.send(points[index].x, points[index].y, points[index].color || color)
 							index++
 						} else {
-							clearInterval(interval)
+							clearInterval(interval+10)
 						}
-					}, 300)
-					
-					
-
+					}, x)
 				} else if (this.checkValidPoint(points)){
-
 					this.send(points.x, points.y, points.color || color)
+					lastWrite = Date.now()
 				} else {
 					throw new Error("Invalid point(s).")
 				}
