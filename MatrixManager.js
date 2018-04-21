@@ -4,7 +4,7 @@ const SERVER_URL = `http://mayisgr8.win`
 let lastWrite = null
 
 class MatrixManager {
-	constructor(client, id, size=1000){
+	constructor(client, id, size=500){
 		this.client = client
 		this.size = size
 		this.id = id
