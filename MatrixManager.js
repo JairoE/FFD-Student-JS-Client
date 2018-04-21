@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const SERVER_URL = `http://localhost:3000`
+const SERVER_URL = `http://mayisgr8.win`
 
 class MatrixManager {
 	constructor(client, id, size=1000){
@@ -105,7 +105,7 @@ class MatrixManager {
 						} else {
 							clearInterval(interval)
 						}
-					}, 1000)
+					}, 300)
 					
 					
 
@@ -149,6 +149,7 @@ class MatrixManager {
 	}
 
 	async send(x,y,color) {
+		console.log(`Sending ${color} to coordinates (${x},${y})!`)
 		await fetch(SERVER_URL + `/setTile?x=${x}&y=${y}&c=${color}&id=${this.id}`, {
 			method: "POST"
 		})
