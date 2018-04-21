@@ -2,7 +2,7 @@
 
 Hello and welcome to the first ever Flatiron Field Day! Today, you and your team will have the opportunity to create a mosaic using your programming skills. 
 
-Right now, we are hosting a server that stores a board full of tiles, and it is the job of your team to write scripts that will allow you to set the color of individual tiles, thus painting your masterpieces for all the world to see. A local Redis server will be running on your machine that will store a live copy on your machine and will be receive updates everytime the main board is updated. If you have no idea what Redis is, first: look it up!, second: don't worry about it! We've given you some code that will handle this part - you only have to do a few things:
+Right now, we are hosting a server that stores a board full of tiles, and it is the job of your team to write scripts that will allow you to set the color of individual tiles, thus painting your masterpieces for all the world to see. A local Redis server will be running on your machine that will store a live copy on your machine and will receive updates everytime the main board is updated. If you have no idea what Redis is, first: look it up!, second: don't worry about it! We've given you some code that will handle this part - you only have to do a few things:
 
 1. Install Redis
 * In your terminal, enter `brew install redis`
@@ -99,7 +99,7 @@ Matrix.set([{x:5,y:6}, {x:8,y:12,color:"4286f4"}, {x:13,y:2}], "FFFFFF")
 let Matrix = new MatrixManager(client, teamID)
 
 //Applies a blue color to all tiles within the rectangle with an upper left corner at (1,1) and a lower right corner at (4,6)
-Matrix.readRect({x:1,y:1}, {x:4,y:6}, "4286f4")
+Matrix.setRect({x:1,y:1}, {x:4,y:6}, "4286f4")
 
 ```
 
