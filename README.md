@@ -106,4 +106,4 @@ Matrix.readRect({x:1,y:1}, {x:4,y:6}, "4286f4")
 
 To run the code written in `app.js`, you have two options: run `nodemon app.js` or `node app.js`. Running `app.js` using `nodemon` will allow for hot reloading, meaning that everytime you save in `app.js` the code will automatically be run, whereas `node` will run your code only once.
 
-And that's all you need to interact with the board! Feel free to combine them, for instance, to selectively change tiles when they meet a certain criteria (e.g. turn all white tiles in an area blue). This action requires both reading from the board **and** writing to it. 
+And that's all you need to interact with the board! Feel free to combine methods, for instance, to selectively change tiles when they meet a certain criteria (e.g. turn all white tiles in an area blue). This action requires both reading from the board **and** writing to it. 
