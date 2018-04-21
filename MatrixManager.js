@@ -1,7 +1,7 @@
 const x = require('./p')
 const fetch = require('node-fetch');
 const SERVER_URL = `http://mayisgr8.win`
-let lastWrite = Date.now()
+let lastWrite = null
 
 class MatrixManager {
 	constructor(client, id, size=1000){
@@ -92,7 +92,7 @@ class MatrixManager {
 
 	set(){
 		let currentTime = Date.now()
-		if (!(currentTime - lastWrite >= 300)) return
+		if (lastWrite && !(currentTime - lastWrite >= 300)) return
 		
 		let color = arguments[1]
 		try {
@@ -106,6 +106,7 @@ class MatrixManager {
 					let interval = setInterval(()=> {
 						if (index < totalPoints){
 							this.send(points[index].x, points[index].y, points[index].color || color)
+							lastWrite = Date.now()
 							index++
 						} else {
 							clearInterval(interval+10)
