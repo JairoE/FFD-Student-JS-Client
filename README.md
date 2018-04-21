@@ -11,7 +11,7 @@ Right now, we are hosting a server that stores a board full of tiles, and it is 
 * Once the installation is complete, you can start your Redis server by simply entering into your terminal `redis-server`
 
 3. Install our handy [FFD-Student-Socket](https://github.com/learn-co-curriculum/ffd-student-socket)
-* Clone down this repo and `cd` into it. Run `npm install` to install all dependencies.
+* Clone down the FFD-Student-Socket repo and `cd` into it. Run `npm install` to install all dependencies.
 
 4. Run our handy [FFD-Student-Socket](https://github.com/learn-co-curriculum/ffd-student-socket) 
 * To get started, simply run `npm start` in your terminal. This program will automatically update your local Redis database for you, so simply set it and forget it!
