@@ -21,6 +21,8 @@ Now that you've got that setup, the next step is to install your **Matrix Manage
 
 To get started, please do the following:
 
+_First, if you would rather use Ruby than Javascript, switch over to [this](https://github.com/learn-co-curriculum/FFD-Student-Ruby-Client/) repo!_
+
 1. Install our nifty **Matrix Manager**
 * Clone down this repo and `cd` into it. There are two important files: `app.js` and `MatrixManager.js`, but you will mostly code in `app.js`. Run `npm install` to install all dependencies. 
 
